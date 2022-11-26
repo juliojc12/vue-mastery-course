@@ -15,36 +15,11 @@
         <div class="nav-bar"></div>
 
         <div class="cart"> Cart ({{ cart }})</div>
-
-        <div class="product-display">
-            <div class="product-container">
-                <div class="product-image">
-                    <img v-bind:src="image" alt="">
-                </div>
-                <div class="product-info">
-                    <h1>{{ title }}</h1>
-
-
-                    <p v-if="inStock">Em estoque</p>
-                    <p v-else>Sem estoque</p>
-
-                    <ul>
-                        <li v-for="detail in details">{{ detail }}</li>
-                    </ul>
-                    <div v-for="(variant, index) in variants" :key="variant.id" @mouseover="upadateVariant(index)"
-                        class="color-circle" :style="{backgroundColor: variant.color}">
-
-                    </div>
-                    <!-- <a :href="url"> Made by Julio Cesar</a> -->
-                    <button class="button" :class="{disabledButton: !inStock}" v-on:click="addToCart"
-                        :disabled="!inStock">Add </button>
-                    <button class="button" :class="{displayNone: !inStock}" v-on:click="removeToCart">Remove</button>
-                </div>
-            </div>
-        </div>
+        <products-display :premium="premium"></products-display>
     </div>
 
     <script src="./main.js"></script>
+    <script src="./components/ProductsDisplay.js"></script>
     <script>
         const mountedApp = app.mount('#app')
     </script>
