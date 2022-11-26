@@ -31,7 +31,7 @@ app.component('products-display', {
                     <!-- <a :href="url"> Made by Julio Cesar</a> -->
                     <button class="button" :class="{disabledButton: !inStock}" v-on:click="addToCart"
                         :disabled="!inStock">Add </button>
-                    <button class="button" :class="{displayNone: !inStock}" v-on:click="removeToCart">Remove</button>
+                    <button class="button" :class="{displayNone: !inStock}" v-on:click="removeFromCart">Remove</button>
                 </div>
             </div>
         </div>`,
@@ -50,11 +50,10 @@ app.component('products-display', {
     },
     methods: {
         addToCart() {
-            this.cart += 1
+            this.$emit('add-to-cart', this.variants[this.selectVariant].id)
         },
-        removeToCart() {
-            if (this.cart > 0)
-                this.cart -= 1
+        removeFromCart() {
+            this.$emit('remove-from-cart', this.variants[this.selectVariant].id)
         },
         upadateVariant(index) {
             this.selectVariant = index
